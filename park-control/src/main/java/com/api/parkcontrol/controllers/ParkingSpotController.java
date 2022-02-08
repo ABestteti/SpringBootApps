@@ -5,6 +5,10 @@ import com.api.parkcontrol.models.ParkingSpotModel;
 import com.api.parkcontrol.services.ParkingSpotService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,26 +34,33 @@ public class ParkingSpotController {
 
     //  Validations, see Custom Validations to improve the code
     if (parkingSpotService.existsByLicensePlateCar(parkingSportDto.getLicensePlateCar())) {
-      return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: License Plate Car is already in use.");
+      return ResponseEntity.status(HttpStatus.CONFLICT)
+          .body("Conflict: License Plate Car is already in use.");
     }
 
     if (parkingSpotService.existsByParkingSpotNumber(parkingSportDto.getParkingSpotNumber())) {
-      return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot Number is already in use.");
+      return ResponseEntity.status(HttpStatus.CONFLICT)
+          .body("Conflict: Parking Spot Number is already in use.");
     }
 
-    if (parkingSpotService.existsByApartmentAndBlock(parkingSportDto.getApartment(), parkingSportDto.getBlock())) {
-      return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Apartment and Block are already registered.");
+    if (parkingSpotService.existsByApartmentAndBlock(
+        parkingSportDto.getApartment(), parkingSportDto.getBlock())) {
+      return ResponseEntity.status(HttpStatus.CONFLICT)
+          .body("Conflict: Apartment and Block are already registered.");
     }
 
     var parkingSpotModel = new ParkingSpotModel();
     BeanUtils.copyProperties(parkingSportDto, parkingSpotModel);
     parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
-    return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(parkingSpotService.save(parkingSpotModel));
   }
 
   @GetMapping
-  public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpots() {
-    return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
+  public ResponseEntity<Page<ParkingSpotModel>> getAllParkingSpots(
+      @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC)
+          Pageable pageable) {
+    return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll(pageable));
   }
 
   @GetMapping("/{id}")
@@ -76,8 +87,8 @@ public class ParkingSpotController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Object> updateParkingSpots(@PathVariable(value = "id") UUID id,
-                                                   @RequestBody @Valid ParkingSportDto parkingSportDto) {
+  public ResponseEntity<Object> updateParkingSpots(
+      @PathVariable(value = "id") UUID id, @RequestBody @Valid ParkingSportDto parkingSportDto) {
     Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
 
     if (!parkingSpotModelOptional.isPresent()) {
