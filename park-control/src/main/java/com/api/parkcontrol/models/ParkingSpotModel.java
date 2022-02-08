@@ -1,7 +1,5 @@
 package com.api.parkcontrol.models;
 
-import jdk.jfr.DataAmount;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,11 +8,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 @Getter
 @Setter
 @Entity
-@Table(name="TB_PAKING_SPORT")
+@Table(name="TB_PARKING_SPORT")
 public class ParkingSpotModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +23,7 @@ public class ParkingSpotModel implements Serializable {
     private String parkingSpotNumber;
 
     @Column(nullable = false, unique = true, length = 7)
-    private String licensePlate;
+    private String licensePlateCar;
 
     @Column(nullable = false, length = 70)
     private String brandCar;
@@ -48,5 +45,4 @@ public class ParkingSpotModel implements Serializable {
 
     @Column(nullable = false, length = 30)
     private String block;
-
 }
