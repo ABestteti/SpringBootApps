@@ -16,6 +16,7 @@ public class ParkingSpotService {
 
     private final ParkingSpotRepository parkingSpotRepository;
 
+    // Always add the annotation @Transaction for save and delete methods!
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSportModel) {
         return parkingSpotRepository.save(parkingSportModel);
@@ -41,6 +42,8 @@ public class ParkingSpotService {
         return parkingSpotRepository.findById(id);
     }
 
+    // Always add the annotation @Transaction for save and delete methods!
+    @Transactional
     public void delete(ParkingSpotModel parkingSpotModel) {
         parkingSpotRepository.deleteById(parkingSpotModel.getId());
     }
