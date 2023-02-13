@@ -21,3 +21,19 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+eclipse-workspace-spring/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/
+
+eclipse-workspace-spring/.metadata/.plugins/org.eclipse.core.resources/.projects/Servers/
+
+*.snap
+
+*.dat
+
+*.index
+
+*.resources
+
+*.txt
+
+eclipse-workspace-spring/.metadata/
