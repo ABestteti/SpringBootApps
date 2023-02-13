@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;fortuneService&apos; in &apos;com.luv2code.springdemo.TrackCoach.TrackCoach(...)&apos; to &apos;theFortuneService&apos;&#x0A;- Original project: &apos;spring-demo-one&apos;&#x0A;- Original element: &apos;com.luv2code.springdemo.TrackCoach.TrackCoach(FortuneService).fortuneService&apos;&#x0A;- Renamed element: &apos;fortuneService&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;fortuneService&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.luv2code.springdemo{TrackCoach.java[TrackCoach~TrackCoach~QFortuneService;@fortuneService!141!169!156!169!QFortuneService;!0!true" name="theFortuneService" references="true" stamp="1672282551682" version="1.0"/>
+</session>
