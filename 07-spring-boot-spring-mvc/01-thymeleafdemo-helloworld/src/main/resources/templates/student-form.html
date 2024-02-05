@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -22,10 +23,20 @@
        </select>
        <br><br>
        Favorite programming language:
+       // Loop to read the elements from favoriteLanguage list defined in the StudentController
        <input type="radio" th:field="*{favoriteLanguage}"
                            th:each="tempLang : ${favoriteLanguageList}"
                            th:value="${tempLang}"
                            th:text="${tempLang}" />
+       <br><br>
+       Favorite Operating Systems:
+       <input type="checkbox" th:field="*{favoriteSystems}"
+                              th:each="tempSystem : ${operatingSystemsList}"
+                              th:value="${tempSystem}"
+                              th:text="${tempSystem}"/>
+<!--       <input type="checkbox" th:field="*{favoriteSystems}" th:value="macOS">MacOS</input>-->
+<!--       <input type="checkbox" th:field="*{favoriteSystems}"-->
+<!--                              th:value="'Microsoft Windows'">Microsoft Windows</input>-->
 
        <br><br>
 
