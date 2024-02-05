@@ -15,6 +15,12 @@
        <br><br>
        Last Name: <input type="text" th:field="*{lastName}"/> <!-- *{lasttName} is a shortcut syntax for: ${student.lastName} -->
        <br><br>
+       Country:
+       <select th:field="*{country}">
+           // Loop to read the elements from countries list defined in the StudentController
+           <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+       </select>
+       <br><br>
        <input type="submit" name="Submit"/>
    </form>
 </body>
