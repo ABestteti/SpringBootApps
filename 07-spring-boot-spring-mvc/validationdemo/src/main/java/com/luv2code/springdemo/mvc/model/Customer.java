@@ -5,17 +5,18 @@ import jakarta.validation.constraints.*;
 public class Customer {
     private String firstName;
 
-    @NotNull(message = "Last name is required")
-    @Size(min=1, message = "Las name is required")
+    @NotNull(message = "Last name is required.")
+    @Size(min=1, message = "Last name is required.")
     private String lastName;
 
-    @Min(value = 0, message = "must ve greater than or equal to zero.")
-    @Max(value = 10, message = "must ve less than or equal to 10.")
-    private int freePasses;
+    @Min(value = 0, message = "Must be greater than or equal to zero.")
+    @Max(value = 10, message = "Must be less than or equal to 10.")
+    @NotNull(message = "Free passes is required.")
+    private Integer freePasses;
 
     private String postalCode;
 
-    @Pattern(regexp = "^[a-zA-Z0-9]{6}", message = "only 6 chars/digits")
+    @Pattern(regexp = "^[a-zA-Z0-9]{6}", message = "Only 6 chars/digits are acceptable.")
     public String getPostalCode() {
         return postalCode;
     }
@@ -24,11 +25,11 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
-    public int getFreePasses() {
+    public Integer getFreePasses() {
         return freePasses;
     }
 
-    public void setFreePasses(int freePasses) {
+    public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
     }
 

@@ -23,7 +23,7 @@
               th:errors="*{lastName}"
               class="errorMsg" ></span>
         <br><br>
-        Free passes: <input type="text" th:field="*{freePasses}" />
+        Free passes (*): <input type="text" th:field="*{freePasses}" />
 
         <!-- Add error message (if present) -->
         <span th:if="${#fields.hasErrors('freePasses')}"
