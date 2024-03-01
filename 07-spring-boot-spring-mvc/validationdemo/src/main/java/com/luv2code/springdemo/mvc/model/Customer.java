@@ -1,5 +1,6 @@
 package com.luv2code.springdemo.mvc.model;
 
+import com.luv2code.springdemo.mvc.validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
@@ -14,9 +15,20 @@ public class Customer {
   @NotNull(message = "Free passes is required.")
   private Integer freePasses;
 
+  @Pattern(regexp = "^[a-zA-Z0-9]{6}", message = "Only 6 chars/digits are acceptable.")
   private String postalCode;
 
-  @Pattern(regexp = "^[a-zA-Z0-9]{6}", message = "Only 6 chars/digits are acceptable.")
+  @CourseCode(value = "TOPS", message = "It must start with TOPS!")
+  private String courseCode;
+
+  public String getCourseCode() {
+    return courseCode;
+  }
+
+  public void setCourseCode(String courseCode) {
+    this.courseCode = courseCode;
+  }
+
   public String getPostalCode() {
     return postalCode;
   }
