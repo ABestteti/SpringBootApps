@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Login Page</title>
+</head>
+<body>
+
+<h3>My custom login page</h3>
+<hr>
+
+<form action="#" th:action="@{/authenticateTheUser}" method="post">
+
+    <!-- Spring Security Filters will read data and authenticate the user -->
+    <p>
+        User name: <input type="text" name="username"> <!-- username is expected by Spring Security -->
+    </p>
+
+    <p>
+        Password: <input type="password" name="password"> <!-- password is expected by Spring Security -->
+    </p>
+
+    <input type="submit" value="Login"/>
+</form>
+</body>
+</html>
