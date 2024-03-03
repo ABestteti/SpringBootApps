@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Luv2code Company Home Page</title>
 </head>
 <body>
-   <h2>Luv2code Company Home Page - test 1</h2>
-   <hr>
-   Welcome to the luv2code company home page!
-   </p>
+<h2>Luv2code Company Home Page - test 1</h2>
 
-   <!-- Add a logout button -->
-   <form action="" th:action="@{/logout}" method="post">
-       <input type="submit" value="Logout" />
-   </form>
+<hr>
+<!-- Display user name and role(s) -->
+<p>
+    User...: <span sec:authentication="principal.username"></span>
+    <br>
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
+<hr>
+
+Welcome to the luv2code company home page!
+</p>
+
+<!-- Add a logout button -->
+<form action="" th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
 
 </body>
 </html>
