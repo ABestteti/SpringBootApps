@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -8,20 +9,28 @@
 <body>
 <h2>Luv2code Company Home Page - test 1</h2>
 
-<hr>
-<!-- Display user name and role(s) -->
-<p>
-    User...: <span sec:authentication="principal.username"></span>
-    <br>
-    Role(s): <span sec:authentication="principal.authorities"></span>
-</p>
-<hr>
-<!-- Add a link to point to /leaders ... this is for the managers-->
-<p>
-    <a th:href="@{/leaders}">Leadership Meething</a>
-    (Only for Managers)
-</p>
+
+<div>
+    <hr sec:authorize="hasRole('MANAGER')">
+    <!-- Display user name and role(s) -->
+    <p>
+        User...: <span sec:authentication="principal.username"></span>
+        <br>
+        Role(s): <span sec:authentication="principal.authorities"></span>
+    </p>
+</div>
+
+<div sec:authorize="hasRole('SYSTEM')">
+    <hr>
+    <!-- Add a link to point to /leaders ... this is for the managers-->
+    <p>
+        <a th:href="@{/leaders}">IT Systems eething</a>
+        (Only for Admins)
+    </p>
+</div>
+
 <!-- Add a link to point to /systems ... this is for the admins-->
+<hr>
 <p>
     <a th:href="@{/systems}">Admins Meething</a>
     (Only for Admins)
