@@ -7,11 +7,10 @@
     <title>Luv2code Company Home Page</title>
 </head>
 <body>
-<h2>Luv2code Company Home Page - test 1</h2>
-
+<h2>Luv2code Company Home Page</h2>
 
 <div>
-    <hr sec:authorize="hasRole('MANAGER')">
+    <hr>
     <!-- Display user name and role(s) -->
     <p>
         User...: <span sec:authentication="principal.username"></span>
@@ -20,7 +19,7 @@
     </p>
 </div>
 
-<div sec:authorize="hasRole('SYSTEM')">
+<div sec:authorize="hasRole('MANAGER')">
     <hr>
     <!-- Add a link to point to /leaders ... this is for the managers-->
     <p>
@@ -29,13 +28,15 @@
     </p>
 </div>
 
-<!-- Add a link to point to /systems ... this is for the admins-->
-<hr>
-<p>
-    <a th:href="@{/systems}">Admins Meething</a>
-    (Only for Admins)
+<div sec:authorize="hasRole('ADMIN')">
+    <!-- Add a link to point to /systems ... this is for the admins-->
+    <p>
+        <a th:href="@{/systems}">Admins Meething</a>
+        (Only for Admins)
 
-</p>
+    </p>
+</div>
+
 <hr>
 Welcome to the luv2code company home page!
 </p>
