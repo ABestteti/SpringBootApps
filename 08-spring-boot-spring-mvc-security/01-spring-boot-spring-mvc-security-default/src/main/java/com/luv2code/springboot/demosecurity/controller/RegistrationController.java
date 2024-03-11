@@ -1,13 +1,11 @@
 package com.luv2code.springboot.demosecurity.controller;
 
-import java.util.logging.Logger;
-
 import com.luv2code.springboot.demosecurity.entity.User;
 import com.luv2code.springboot.demosecurity.service.UserService;
 import com.luv2code.springboot.demosecurity.user.WebUser;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;

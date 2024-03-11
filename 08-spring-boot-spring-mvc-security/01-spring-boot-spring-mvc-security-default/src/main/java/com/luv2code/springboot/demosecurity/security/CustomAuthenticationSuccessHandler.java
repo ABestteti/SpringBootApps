@@ -1,18 +1,15 @@
 package com.luv2code.springboot.demosecurity.security;
 
-import java.io.IOException;
-
+import com.luv2code.springboot.demosecurity.entity.User;
+import com.luv2code.springboot.demosecurity.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
-import com.luv2code.springboot.demosecurity.entity.User;
-import com.luv2code.springboot.demosecurity.service.UserService;
 
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
