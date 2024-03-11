@@ -8,19 +8,33 @@ public class DemoController {
 
     @GetMapping("/")
     public String showHome() {
+
         return "home";
     }
 
-    // add another request mapping for /leaders
+    // add a request mapping for /leaders
+
     @GetMapping("/leaders")
     public String showLeaders() {
+
         return "leaders";
     }
 
-    // add another request mapping for /systems
+    // add request mapping for /systems
+
     @GetMapping("/systems")
     public String showSystems() {
+
         return "systems";
     }
 
 }
+
+
+
+
+
+
+
+
+
