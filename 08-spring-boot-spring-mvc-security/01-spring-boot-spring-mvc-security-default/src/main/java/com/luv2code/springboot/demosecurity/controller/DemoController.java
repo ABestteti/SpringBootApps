@@ -6,35 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DemoController {
 
-    @GetMapping("/")
-    public String showHome() {
+  @GetMapping("/")
+  public String showHome() {
 
-        return "home";
-    }
+    return "home";
+  }
 
-    // add a request mapping for /leaders
+  // add a request mapping for /leaders
 
-    @GetMapping("/leaders")
-    public String showLeaders() {
+  @GetMapping("/leaders")
+  public String showLeaders() {
 
-        return "leaders";
-    }
+    return "leaders";
+  }
 
-    // add request mapping for /systems
+  // add request mapping for /systems
 
-    @GetMapping("/systems")
-    public String showSystems() {
+  @GetMapping("/systems")
+  public String showSystems() {
 
-        return "systems";
-    }
-
+    return "systems";
+  }
 }
-
-
-
-
-
-
-
-
-

@@ -10,37 +10,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-	private EntityManager entityManager;
+  private EntityManager entityManager;
 
-	@Autowired
-	public UserDaoImpl(EntityManager theEntityManager) {
-		this.entityManager = theEntityManager;
-	}
+  @Autowired
+  public UserDaoImpl(EntityManager theEntityManager) {
+    this.entityManager = theEntityManager;
+  }
 
-	@Override
-	public User findByUserName(String theUserName) {
+  @Override
+  public User findByUserName(String theUserName) {
 
-		// retrieve/read from database using username
-		TypedQuery<User> theQuery = entityManager.createQuery("from User where userName=:uName and enabled=true", User.class);
-		theQuery.setParameter("uName", theUserName);
+    // retrieve/read from database using username
+    TypedQuery<User> theQuery =
+        entityManager.createQuery("from User where userName=:uName and enabled=true", User.class);
+    theQuery.setParameter("uName", theUserName);
 
-		User theUser = null;
-		try {
-			theUser = theQuery.getSingleResult();
-		} catch (Exception e) {
-			theUser = null;
-		}
+    User theUser = null;
+    try {
+      theUser = theQuery.getSingleResult();
+    } catch (Exception e) {
+      theUser = null;
+    }
 
-		return theUser;
-	}
+    return theUser;
+  }
 
-	@Override
-	@Transactional
-	public void save(User theUser) {
+  @Override
+  @Transactional
+  public void save(User theUser) {
 
-		// create the user ... finally LOL
-		entityManager.merge(theUser);
-	}
-
-
+    // create the user ... finally LOL
+    entityManager.merge(theUser);
+  }
 }
