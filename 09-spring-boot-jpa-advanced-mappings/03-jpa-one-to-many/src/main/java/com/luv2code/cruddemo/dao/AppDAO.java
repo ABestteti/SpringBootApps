@@ -9,9 +9,11 @@ public interface AppDAO {
 
   void save(Instructor theInstructor);
 
-  Instructor findInstructorById(int theInstructorId);
+  void update(Instructor theInstructor);
 
   void deleteInstructorById(int theInstructorId);
+
+  Instructor findInstructorById(int theInstructorId);
 
   InstructorDetail findInstructorDetailById(int theInstructorId);
 
@@ -20,4 +22,9 @@ public interface AppDAO {
   List<Course> findCoursesByInstructorId(int theInstructorId);
 
   Instructor findInstructorByIdJoinFetch(int theInstructorId);
+
+  // Course CRUD methods
+  void updateCourse(Course theCourse);
+
+  Course findCourseById(int theCourseId);
 }
