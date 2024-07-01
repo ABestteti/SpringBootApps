@@ -42,6 +42,7 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     @OneToMany(mappedBy = "instructor",  // Maps the instructor field from Course entity
+               fetch = FetchType.LAZY,
                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                           CascadeType.REFRESH, CascadeType.DETACH})
     private List<Course> courses;
