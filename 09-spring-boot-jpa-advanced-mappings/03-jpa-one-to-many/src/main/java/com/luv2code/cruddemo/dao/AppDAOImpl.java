@@ -30,32 +30,32 @@ public class AppDAOImpl implements AppDAO {
     }
 
     @Override
-    public Instructor findInstructorById(int theId) {
-        return entityManager.find(Instructor.class, theId);
+    public Instructor findInstructorById(int theInstructorId) {
+        return entityManager.find(Instructor.class, theInstructorId);
     }
 
     @Override
     @Transactional
-    public void deleteInstructorById(int theId) {
+    public void deleteInstructorById(int theInstructorId) {
 
         // retrieve the instructor
-        Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+        Instructor tempInstructor = entityManager.find(Instructor.class, theInstructorId);
 
         // delete the instructor
         entityManager.remove(tempInstructor);
     }
 
     @Override
-    public InstructorDetail findInstructorDetailById(int theId) {
-        return entityManager.find(InstructorDetail.class, theId);
+    public InstructorDetail findInstructorDetailById(int theInstructorId) {
+        return entityManager.find(InstructorDetail.class, theInstructorId);
     }
 
     @Override
     @Transactional
-    public void deleteInstructorDetailById(int theId) {
+    public void deleteInstructorDetailById(int theInstructorId) {
 
         // retrieve instructor detail
-        InstructorDetail tempInstructorDetail = entityManager.find(InstructorDetail.class, theId);
+        InstructorDetail tempInstructorDetail = entityManager.find(InstructorDetail.class, theInstructorId);
 
         // remove the associated object reference
         // break bi-directional link
@@ -67,14 +67,19 @@ public class AppDAOImpl implements AppDAO {
     }
 
     @Override
-    public List<Course> findCoursesByInstructorId(int theInstructor) {
+    public List<Course> findCoursesByInstructorId(int theInstructorId) {
         // create the query
         TypedQuery<Course> query = entityManager.createQuery(
                 "select c from Course c where c.instructor.id = :instructorId", Course.class
         );
-        query.setParameter("instructorId", theInstructor);
+        query.setParameter("instructorId", theInstructorId);
 
         return query.getResultList();
+    }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theInstructorId) {
+        return null;
     }
 }
 
