@@ -4,12 +4,11 @@ import com.luv2code.cruddemo.dao.AppDAO;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -36,8 +35,23 @@ public class CruddemoApplication {
 			
 			//findInstructorWithCourses(appDAO);
 
-			findCoursesForInstructor(appDAO);
+			//findCoursesForInstructor(appDAO);
+
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+
+		int theId = 1;
+
+		// find the instructor
+		System.out.println("Finding instructor with id: " + theId);
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println("Found instructor: " + instructor);
+		System.out.println("the associated courses: " + instructor.getCourses());
+		System.out.println("Done!");
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
