@@ -1,5 +1,6 @@
 package com.luv2code.cruddemo.dao;
 
+import com.luv2code.cruddemo.dao.exception.CourseNotFoundException;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
@@ -28,5 +29,5 @@ public interface AppDAO {
 
   Course findCourseById(int theCourseId);
 
-  void deleteCourseById(int theCourseId);
+  void deleteCourseById(int theCourseId) throws CourseNotFoundException;
 }

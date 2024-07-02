@@ -1,5 +1,6 @@
 package com.luv2code.cruddemo.dao;
 
+import com.luv2code.cruddemo.dao.exception.CourseNotFoundException;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AppDAOImpl implements AppDAO {
 
   // define field for entity manager
-  private EntityManager entityManager;
+  private final EntityManager entityManager;
 
   // inject entity manager using constructor injection
   @Autowired
@@ -69,7 +70,7 @@ public class AppDAOImpl implements AppDAO {
         entityManager.find(InstructorDetail.class, theInstructorId);
 
     // remove the associated object reference
-    // break bi-directional link
+    // break bidirectional link
     //
     tempInstructorDetail.getInstructor().setInstructorDetail(null);
 
@@ -116,8 +117,11 @@ public class AppDAOImpl implements AppDAO {
   @Override
   @Transactional
   public void deleteCourseById(int theCourseId) {
-    Course tempCourse = entityManager.find(Course.class, theCourseId);
-    entityManager.remove(tempCourse);
+    Course course = entityManager.find(Course.class, theCourseId);
+    if(course != null){
+      entityManager.remove(course);
+    }else{
+      throw new CourseNotFoundException("Course with id: "+ theCourseId + " not found.");
+    }
   }
-
 }
