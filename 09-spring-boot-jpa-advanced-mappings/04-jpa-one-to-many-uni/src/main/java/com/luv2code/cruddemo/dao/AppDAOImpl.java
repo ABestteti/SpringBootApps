@@ -132,4 +132,12 @@ public class AppDAOImpl implements AppDAO {
       throw new CourseNotFoundException("Course with id: "+ theCourseId + " not found.");
     }
   }
+
+  @Override
+  @Transactional
+  public void saveCourse(Course theCourse) {
+    LOGGER.info("Calling saveCourse...");
+    entityManager.persist(theCourse);
+    LOGGER.info("Course saved with id: {}", theCourse.getId());
+  }
 }

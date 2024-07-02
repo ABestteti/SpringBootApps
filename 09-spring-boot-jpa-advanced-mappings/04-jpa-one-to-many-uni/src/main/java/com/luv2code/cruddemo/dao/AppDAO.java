@@ -30,4 +30,6 @@ public interface AppDAO {
   Course findCourseById(int theCourseId);
 
   void deleteCourseById(int theCourseId) throws CourseNotFoundException;
+
+  void saveCourse(Course theCourse);
 }
