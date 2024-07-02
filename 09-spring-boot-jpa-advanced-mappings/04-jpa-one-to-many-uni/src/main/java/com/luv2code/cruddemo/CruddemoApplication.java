@@ -22,8 +22,30 @@ public class CruddemoApplication {
   public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 
     return runner -> {
-      createCourseAndReviews(appDAO);
+      //createCourseAndReviews(appDAO);
+      
+      //retrieveCourseAndReviews(appDAO);
+
+      deleteCourseAndReviews(appDAO);
     };
+  }
+
+  private void deleteCourseAndReviews(AppDAO appDAO) {
+    int theCourseId = 12;
+    appDAO.deleteCourseById(theCourseId); // it will also delete the reviews because of the CascadeType.ALL
+    System.out.println("Course deleted: " + theCourseId);
+  }
+
+  private void retrieveCourseAndReviews(AppDAO appDAO) {
+    int theCourseId = 12;
+
+    Course course = appDAO.findCourseAndReviewsByCourseId(theCourseId);
+
+    System.out.println("Course:" + course);
+
+    System.out.println("Reviews:" + course.getReviews());
+
+    System.out.println("Done!");
   }
 
   private void createCourseAndReviews(AppDAO appDAO) {
