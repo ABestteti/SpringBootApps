@@ -4,6 +4,7 @@ import com.luv2code.cruddemo.dao.exception.CourseNotFoundException;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import com.luv2code.cruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
@@ -127,7 +128,7 @@ public class AppDAOImpl implements AppDAO {
     if(course != null){
       LOGGER.info("Course found and to be deleted: {}", course);
       entityManager.remove(course);
-    }else{
+    } else {
       LOGGER.error("CourseNotFoundException. Course with id: {} not found.", theCourseId);
       throw new CourseNotFoundException("Course with id: "+ theCourseId + " not found.");
     }
@@ -155,10 +156,61 @@ public Course findCourseAndReviewsByCourseId(int theCourseId) {
     Course resultCourse = query.getSingleResult();
     if(resultCourse != null){
         LOGGER.info("Course found with id: {}", theCourseId);
-    }else{
+    } else {
         LOGGER.info("No Course found with id: {}", theCourseId);
     }
 
     return resultCourse;
 }
+
+  @Override
+  public Course findCourseAndStudentsByCourseId(int theCourseId) {
+    LOGGER.info("Finding Course/students with course id: {}", theCourseId);
+
+    TypedQuery<Course> query = entityManager.createQuery(
+            "select c from Course c JOIN FETCH c.students where c.id = :courseId", Course.class
+    );
+
+    query.setParameter("courseId", theCourseId);
+    LOGGER.info("Parameter courseId set for the query: {}", theCourseId);
+
+    Course resultCourse = query.getSingleResult();
+    if(resultCourse != null){
+      LOGGER.info("Course/students found with course id: {}", theCourseId);
+    } else {
+      LOGGER.info("No Course found with course id: {}", theCourseId);
+    }
+
+    return resultCourse;
+  }
+
+  @Override
+  public Student findStudentAndCourseByStudentId(int theStudentId) {
+    // create a query
+    TypedQuery<Student> query = entityManager.createQuery(
+            "select s from Student s join fetch s.courses where s.id = :studentId", Student.class
+    );
+    query.setParameter("studentId", theStudentId);
+
+    // execute the query
+    Student theStudent = query.getSingleResult();
+
+    return theStudent;
+  }
+
+  @Override
+  @Transactional
+  public void updateStudent(Student theStudent) {
+    LOGGER.info("Updating Student with id: {}", theStudent.getId());
+    entityManager.merge(theStudent);
+    LOGGER.info("Student updated with id: {}", theStudent.getId());
+  }
+
+  @Override
+  @Transactional
+  public void deleteStudentById(int theStudentId) {
+    LOGGER.info("Deleting Student with id: {}", theStudentId);
+    entityManager.remove(entityManager.find(Student.class, theStudentId));
+    LOGGER.info("Student deleted with id: {}", theStudentId);
+  }
 }

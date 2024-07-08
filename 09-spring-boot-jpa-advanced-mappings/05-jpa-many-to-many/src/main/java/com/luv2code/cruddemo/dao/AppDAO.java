@@ -4,6 +4,8 @@ import com.luv2code.cruddemo.dao.exception.CourseNotFoundException;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import com.luv2code.cruddemo.entity.Student;
+
 import java.util.List;
 
 public interface AppDAO {
@@ -34,4 +36,12 @@ public interface AppDAO {
   void saveCourse(Course theCourse);
 
   Course findCourseAndReviewsByCourseId(int theCourseId);
+
+  Course findCourseAndStudentsByCourseId(int theCourseId);
+
+  Student findStudentAndCourseByStudentId(int theStudentId);
+
+  void updateStudent(Student theStudent);
+
+  void deleteStudentById(int theStudentId);
 }
