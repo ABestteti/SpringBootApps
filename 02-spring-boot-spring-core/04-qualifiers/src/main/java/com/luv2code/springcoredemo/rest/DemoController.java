@@ -9,22 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
 
-    // define a private field for the dependency
-    private Coach myCoach;
+  // define a private field for the dependency
+  private Coach myCoach;
 
-    @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
-        myCoach = theCoach;
-    }
+  @Autowired
+  public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    myCoach = theCoach;
+  }
 
-    @GetMapping("/dailyworkout")
-    public String getDailyWorkout() {
-        return myCoach.getDailyWorkout();
-    }
+  @GetMapping("/dailyworkout")
+  public String getDailyWorkout() {
+    return myCoach.getDailyWorkout();
+  }
 }
-
-
-
-
-
-
